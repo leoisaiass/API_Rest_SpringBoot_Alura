@@ -1,14 +1,15 @@
-package med.voll.api.medico;
+package med.voll.api.domain.medico;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.api.endereco.Endereco;
+import med.voll.api.domain.endereco.Endereco;
 
 @Table(name = "medicos")
 @Entity(name = "Medico")
+// Anotações do Lombok que simplifica a criação da classe
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,11 +29,14 @@ public class Medico {
     @Enumerated(EnumType.STRING)
     private Especialidade especialidade;
 
+    //  Indicando que Endereco é um objeto embutido dentro de médico
+    //  Então os atributos da classe endereco serão mapeados como colunas na tabela médico
     @Embedded
     private Endereco endereco;
 
     private Boolean ativo;
 
+    // Construtor recebendo o DTO, assim garantindo mais segurança para classe Medico
     public Medico(DadosCadastroMedico dados) {
         this.ativo = true;
         this.nome = dados.nome();
@@ -43,6 +47,7 @@ public class Medico {
         this.endereco = new Endereco(dados.endereco());
     }
 
+    // Metodo para atualizar as informações na requisição PUT
     public void atualizarInformacoes(DadosAtualizacaoMedico dados) {
         if (dados.nome() != null) {
             this.nome = dados.nome();
@@ -56,6 +61,7 @@ public class Medico {
 
     }
 
+    // Metodo de exclusão lógica de registro
     public void excluir() {
         this.ativo = false;
     }
