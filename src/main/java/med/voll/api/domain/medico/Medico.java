@@ -7,9 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.domain.endereco.Endereco;
 
+// Anotações para criar entidade e também a partir do Getter anotações do Lombok para simplificar criação de classes
 @Table(name = "medicos")
 @Entity(name = "Medico")
-// Anotações do Lombok que simplifica a criação da classe
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
