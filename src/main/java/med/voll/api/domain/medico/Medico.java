@@ -58,7 +58,6 @@ public class Medico {
         if (dados.endereco() != null) {
             this.endereco.atualizarInformacoes(dados.endereco());
         }
-
     }
 
     // Metodo de exclusão lógica de registro
