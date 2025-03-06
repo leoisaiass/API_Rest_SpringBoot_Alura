@@ -1,6 +1,7 @@
 package med.voll.api.infra.exception;
 
 import jakarta.persistence.EntityNotFoundException;
+import med.voll.api.domain.ValidacaoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -30,6 +31,11 @@ public class TratadorDeErros {
         var erros = ex.getFieldErrors();
         // Retornando apenas os erros que estão mapeados no DTO
         return ResponseEntity.badRequest().body(erros.stream().map(DadosErroValidacao::new).toList());
+    }
+
+    @ExceptionHandler(ValidacaoException.class)
+    public ResponseEntity tratarErroRegraDeNegocio(ValidacaoException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
     // DTO para pegar apenas campo e a mensagem do retorno do erro
