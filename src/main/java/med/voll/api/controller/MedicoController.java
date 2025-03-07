@@ -1,5 +1,6 @@
 package med.voll.api.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import med.voll.api.domain.medico.*;
@@ -13,6 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("medicos")
+@SecurityRequirement(name = "bearer-key")
 public class MedicoController {
 
     // Injeção de dependência de uma classe controlada e reconhecida pelo SpringBoot
@@ -76,7 +78,7 @@ public class MedicoController {
             @PathVariable Long id) {
         var medico = repository.getReferenceById(id);
         medico.excluir();
-        // Retornando que foi feito com sucesso mas não há conteúdo para retorno
+        // Retornando que foi feito com sucesso, mas não há conteúdo para retorno
         return ResponseEntity.noContent().build();
     }
 
