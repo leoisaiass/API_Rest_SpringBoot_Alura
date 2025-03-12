@@ -21,7 +21,7 @@ public class MedicoController {
     @Autowired
     MedicoRepository repository;
 
-    // Requisão POST do protocolo HTTP - Insere alguma coisa no banco de dados
+    // Requisição POST do protocolo HTTP - Insere alguma coisa no banco de dados
     @PostMapping
     // Indicando que vai ter uma transação com o banco de dados
     @Transactional
